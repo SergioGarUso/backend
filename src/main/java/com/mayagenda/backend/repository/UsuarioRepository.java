@@ -1,7 +1,7 @@
 package com.mayagenda.backend.repository;
 
-import com.mayagenda.backend.entity.Usuario;
+import com.mayagenda.backend.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+public interface UsuarioRepository extends JpaRepository<Cliente, Long> {
 }

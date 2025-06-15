@@ -1,19 +1,33 @@
 package com.mayagenda.backend.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
-public class Usuario {
+@Table(name = "clientes")
+public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nombre;
-    private String email;
+
     private String telefono;
 
-    // Getters y setters
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cita> citas;
+
+    // === Constructores ===
+
+    public Cliente() {}
+
+    public Cliente(String nombre, String telefono) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+    }
+
+    // === Getters y Setters ===
 
     public Long getId() {
         return id;
@@ -31,19 +45,19 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getTelefono() {
         return telefono;
     }
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public List<Cita> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(List<Cita> citas) {
+        this.citas = citas;
     }
 }

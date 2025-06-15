@@ -1,7 +1,7 @@
 package com.mayagenda.backend.controller;
 
 import com.mayagenda.backend.entity.Cita;
-import com.mayagenda.backend.entity.Usuario;
+import com.mayagenda.backend.entity.Cliente;
 import com.mayagenda.backend.repository.CitaRepository;
 import com.mayagenda.backend.repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +27,10 @@ public class CitaController {
 
     @PostMapping
     public ResponseEntity<Cita> crearCita(@RequestBody Cita cita) {
-        if (cita.getUsuario() != null && cita.getUsuario().getId() != null) {
-            Usuario usuario = usuarioRepository.findById(cita.getUsuario().getId()).orElse(null);
+        if (cita.getCliente() != null && cita.getCliente().getId() != null) {
+            Cliente usuario = usuarioRepository.findById(cita.getCliente().getId()).orElse(null);
             if (usuario != null) {
-                cita.setUsuario(usuario);
+                cita.setCliente(usuario);
                 return ResponseEntity.ok(citaRepository.save(cita));
             }
         }

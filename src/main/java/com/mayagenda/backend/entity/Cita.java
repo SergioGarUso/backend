@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
+@Table(name = "citas")
 public class Cita {
 
     @Id
@@ -12,13 +13,27 @@ public class Cita {
     private Long id;
 
     private LocalDate fecha;
+
     private LocalTime hora;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario_id")
-    private Usuario usuario;
+    private String descripcion;
 
-    // Getters y setters
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", nullable = false)
+    private Cliente cliente;
+
+    // === Constructores ===
+
+    public Cita() {}
+
+    public Cita(LocalDate fecha, LocalTime hora, String descripcion, Cliente cliente) {
+        this.fecha = fecha;
+        this.hora = hora;
+        this.descripcion = descripcion;
+        this.cliente = cliente;
+    }
+
+    // === Getters y Setters ===
 
     public Long getId() {
         return id;
@@ -44,11 +59,19 @@ public class Cita {
         this.hora = hora;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }

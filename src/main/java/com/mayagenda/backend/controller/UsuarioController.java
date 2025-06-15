@@ -1,6 +1,6 @@
 package com.mayagenda.backend.controller;
 
-import com.mayagenda.backend.entity.Usuario;
+import com.mayagenda.backend.entity.Cliente;
 import com.mayagenda.backend.repository.UsuarioRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,12 @@ public class UsuarioController {
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public List<Usuario> getAllUsuarios() {
+    public List<Cliente> getAllUsuarios() {
         return usuarioRepository.findAll();
     }
 
     @PostMapping
-    public Usuario crearUsuario(@RequestBody Usuario usuario) {
+    public Cliente crearUsuario(@RequestBody Cliente usuario) {
         return usuarioRepository.save(usuario);
     }
 }
